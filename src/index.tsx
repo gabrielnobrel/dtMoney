@@ -8,6 +8,7 @@ createServer({
   routes() {
     this.namespace = 'api';
 
+    //tipo da requisição
     this.get('/transactions', () => {
       return [
         {

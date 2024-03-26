@@ -4,6 +4,7 @@ import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 import { Container, TransactionTypeContainer, RadioBox } from './styles';
 import { FormEvent, useState } from 'react';
+import { api } from '../../services/api';
 
 interface INewTransitionModalProps {
    isOpen: boolean;
@@ -18,14 +19,16 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransitionMo
 
    function handleCreateTransaction(event: FormEvent) {
       event.preventDefault()
-      console.log(
-         {
-            title,
-            value,
-            category,
-            type
-         }
-      )
+
+      const data =
+      {
+         title,
+         value,
+         category,
+         type
+      }
+
+      api.post('/transactions', data)
    }
 
    return (
@@ -35,7 +38,7 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransitionMo
          overlayClassName="react-modal-overlay"
          className="react-modal-content"
       >
-
+         {/* Botao de fechar */}
          <button
             type='button'
             onClick={onRequestClose}
@@ -44,7 +47,6 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransitionMo
          </button>
 
          <Container onSubmit={handleCreateTransaction}>
-
             <h2>Cadastrar Transação</h2>
 
             <input placeholder='Título' value={title} onChange={event => setTitle(event.target.value)} />

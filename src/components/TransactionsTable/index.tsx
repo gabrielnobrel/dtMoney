@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Container } from "./styles";
-import { api } from "../../services/api";
-
-interface ITransaction {
-   id: number,
-   title: string,
-   amount: number,
-   type: string,
-   category: string,
-   createdAt: string
-}
+import { TransactionsContext } from "../../TransactionsContext";
 
 export function TransactionsTable() {
-   const [transactions, setTransactions] = useState<ITransaction[]>([])
-
-   useEffect(() => {
-      api.get('/transactions') // tipo de requisição
-         .then(response => setTransactions(response.data.transactions))
-   }, [])
+   const transactions = useContext(TransactionsContext)
 
    return (
-      <Container>
+      <Container >
          <table>
             <thead>
                <tr>
@@ -45,6 +31,6 @@ export function TransactionsTable() {
                ))}
             </tbody>
          </table>
-      </Container>
+      </Container >
    )
 }

@@ -1,13 +1,13 @@
 import { useContext } from 'react';
-import { TransactionsContext } from '../../TransactionsContext';
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 import totalImg from '../../assets/total.svg'
 
 import { Container } from "./styles";
+import { useTransactions } from '../../hooks/useTransactions';
 
 export function Summary() {
-   const { transactions } = useContext(TransactionsContext)
+   const { transactions } = useTransactions();
 
    // existe a opção de calcular o total da seguinte forma:
    // const totalDeposit = transactions.reduce((acc, transaction) => {

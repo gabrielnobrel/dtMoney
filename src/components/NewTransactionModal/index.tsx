@@ -25,6 +25,7 @@ export function NewTransactionModal({ isOpen, onRequestClose }: INewTransitionMo
       // Para não recarregar o forms
       event.preventDefault()
 
+      // esperar enviar o formulário para depois deletar as informações
       await createTransaction({
          title,
          amount,
